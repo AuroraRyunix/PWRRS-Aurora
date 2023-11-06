@@ -1,0 +1,33 @@
+use ethereum_types::H256;
+use ethereum_types::U256;
+use ethereum_types::Address;
+use ethereum_types::PrivateKey;
+
+pub struct WalletUtils;
+
+impl WalletUtils {
+    pub fn from_private_key(private_key_str: &str) -> Result<PrivateKey, &'static str> {
+        // Parse the private key string
+        let private_key_bytes = hex::decode(&private_key_str[2..]).map_err(|_| "Invalid private key format")?;
+        
+        // Create an Ethereum PrivateKey
+        let private_key = PrivateKey::from_slice(&private_key_bytes).ok_or("Invalid private key bytes")?;
+
+        Ok(private_key)
+    }
+
+    pub fn generate_mnemonic() -> String {
+        // Generate a mnemonic (use an Ethereum-specific library or another suitable library)
+        unimplemented!()
+    }
+
+    pub fn get_wallet_from_mnemonic(mnemonic_str: &str, acc_number: u32) -> Result<PrivateKey, &'static str> {
+        // Parse and process the mnemonic
+        unimplemented!()
+    }
+
+    pub fn get_random_wallet() -> Result<PrivateKey, &'static str> {
+        // Generate a random mnemonic and get a wallet from it
+        unimplemented!()
+    }
+}
